@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LittlerURL — Minimalist URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-grid"></div>
+
+  <main class="app-container">
+    <header class="app-header">
+      <div class="logo-badge">
+        <span class="logo-dot"></span>
+        <span class="logo-text">LittlerURL</span>
+      </div>
+      <h1 class="hero-title">Shorten links.<br><span class="gradient-text">Zero distractions.</span></h1>
+      <p class="hero-subtitle">Fast, lightweight, and clean URL shortening service.</p>
+    </header>
+
+    <section class="card input-card">
+      <form id="shorten-form" class="url-form">
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <input 
+            type="text" 
+            id="url-input" 
+            placeholder="Paste your long link here (e.g. https://github.com/...)" 
+            autocomplete="off" 
+            spellcheck="false" 
+            required 
+          />
+          <button type="button" id="clear-btn" class="clear-btn" aria-label="Clear input" style="display: none;">
+            &times;
+          </button>
+        </div>
+        <button type="submit" id="submit-btn" class="btn btn-primary">
+          <span class="btn-text">Shorten</span>
+          <span class="btn-loader" style="display: none;"></span>
+        </button>
+      </form>
+
+      <div id="error-banner" class="error-banner" style="display: none;"></div>
+    </section>
+
+    <!-- Result Box -->
+    <section id="result-section" class="card result-card" style="display: none;">
+      <div class="result-header">
+        <span class="result-label">Your Shortened Link</span>
+        <span class="ready-badge">Ready to share</span>
+      </div>
+      <div class="result-content">
+        <input type="text" id="short-url-output" class="result-input" readonly />
+        <div class="result-actions">
+          <button id="copy-btn" class="btn btn-secondary">
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copy-btn-text">Copy</span>
+          </button>
+          <a id="visit-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Visit</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent History Section -->
+    <section id="history-section" class="card history-card" style="display: none;">
+      <div class="history-header">
+        <h2>Recent Links</h2>
+        <button id="clear-history-btn" class="text-btn">Clear All</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </section>
+
+    <footer class="app-footer">
+      <span>Built with Express & MongoDB • Running on Port 8001</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
